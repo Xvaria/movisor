@@ -90,4 +90,5 @@ jobs:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: ${{ env.ECS_SERVICE }}
         cluster: ${{ env.ECS_CLUSTER }}
+        target_url: http://18.191.201.21:3000/
         wait-for-service-stability: true
