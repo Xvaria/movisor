@@ -6,15 +6,13 @@ function App() {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
   const [movie, setMovie] = useState('Batman');
-  const [btnpop, setBtnpop] = useState({value: false, title: ''});
+  const [btnpop, setBtnpop] = useState({value: false, title: '', count: 0});
   const [todos, setTodos] = useState();
   const fetchApi = async () => {
     const response = await fetch(`http://www.omdbapi.com/?apikey=71241934&s=${movie}&page=${page}&type=movie`);
     console.log(response.statusText);
     const responseJSON = await response.json();
     setTodos(responseJSON);
-    console.log(responseJSON);
-    console.log(btnpop.title);
   }
 
   useEffect(() => {
@@ -40,7 +38,7 @@ function App() {
         {!todos ? 'Cargando...' :
           todos.Search.map((todo, index) => {
             return (
-              <li onClick={() => setBtnpop({value: true, title: todo.Title})}>
+              <li onClick={() => setBtnpop({value: true, title: todo.Title, count: btnpop.count + 1})}>
                 <h1>{todo.Title}</h1>
                 <img src={todo.Poster}/>
                 <h2>{todo.Type}</h2>
@@ -50,7 +48,7 @@ function App() {
           })
         }
       </ul>
-      <Popup trigger={btnpop.value} setTrigger={setBtnpop} value={btnpop.title} count={count}>
+      <Popup trigger={btnpop.value} setTrigger={setBtnpop} value={btnpop.title} count={btnpop.count}>
       </Popup>
       <div className="btn-pages">
         <button onClick={page > 1 ? () => setPage(page - 1) : () => setPage(1)}>Prev</button>

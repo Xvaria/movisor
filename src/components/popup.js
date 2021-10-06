@@ -11,8 +11,6 @@ function Popup(props) {
         setMore(responseJSON);
         console.log(responseJSON);
     }
-    console.log(props.value);
-    console.log(props.count);
 
     useEffect(() => {
         fetchApi2()
@@ -22,12 +20,15 @@ function Popup(props) {
         <div className="popup">
             <div className="popup-inner">
                 <button className="close-btn" onClick={() => props.setTrigger({value: false})}>close</button>
-                <li>
-                    <h1>{more.Title}</h1>
-                    <img src={more.Poster}/>
-                    <h2>{more.Type}</h2>
-                    <h3>{more.Year}</h3>
-                </li>
+                <ul>
+                    <li>
+                        <h1>{more.Title}</h1>
+                        <img src={more.Poster}/>
+                        <h2>{more.Type}</h2>
+                        <h3>{more.Year}</h3>
+                        <h3>{more.Plot}</h3>
+                    </li>
+                </ul>
                 {props.children}
             </div>
         </div>
