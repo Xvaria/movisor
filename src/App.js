@@ -6,7 +6,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
   const [movie, setMovie] = useState('Batman');
-  const [btnpop, setBtnpop] = useState(false);
+  const [btnpop, setBtnpop] = useState({value: false, title: ''});
   const [todos, setTodos] = useState();
   const fetchApi = async () => {
     const response = await fetch(`http://www.omdbapi.com/?apikey=71241934&s=${movie}&page=${page}&type=movie`);
@@ -14,6 +14,7 @@ function App() {
     const responseJSON = await response.json();
     setTodos(responseJSON);
     console.log(responseJSON);
+    console.log(btnpop.title);
   }
 
   useEffect(() => {
@@ -39,7 +40,7 @@ function App() {
         {!todos ? 'Cargando...' :
           todos.Search.map((todo, index) => {
             return (
-              <li onClick={() => setBtnpop(true)}>
+              <li onClick={() => setBtnpop({value: true, title: todo.Title})}>
                 <h1>{todo.Title}</h1>
                 <img src={todo.Poster}/>
                 <h2>{todo.Type}</h2>
@@ -49,7 +50,7 @@ function App() {
           })
         }
       </ul>
-      <Popup trigger={btnpop} setTrigger={setBtnpop}>
+      <Popup trigger={btnpop.value} setTrigger={setBtnpop} value={btnpop.title} count={count}>
       </Popup>
       <div className="btn-pages">
         <button onClick={page > 1 ? () => setPage(page - 1) : () => setPage(1)}>Prev</button>
