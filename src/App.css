@@ -1,38 +1,116 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 .App {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color:rgb(22, 22, 22);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  width: 98%;
+  max-width: 1000px;
+  height: 50px;
+  padding: 0 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.searcher {
+  display: flex;
+  justify-content: end;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.searcher input{
+  width: 300px;
+  height: auto;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.searcher a {
+  width: 80px;
+  height: 30px;
+  font-size: 15px;
+  padding: 2.5px;
+  margin-right: 10px;
+  background-color:dimgray;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+ul {
+  display: flex;
+  width: 100%;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+ul li{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  width: 300px;
+  height: auto;
+  margin: 20px auto;
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+ul li img {
+  width: 200px;
+  height: 300px;
+  margin: 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul li h1 {
+  font-size: 20px;
+  height: auto;
+}
+
+ul li h2 {
+  font-size: 18px;
+  height: auto;
+}
+
+ul li h3 {
+  font-size: 16px;
+  height: auto;
+}
+
+.btn-pages {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  width: 98%;
+  max-width: 1000px;
+  height: 50px;
+  padding: 0 20px;
+}
+
+.btn-pages button {
+  width: 80px;
+  height: 30px;
+  font-size: 15px;
+  padding: 2.5px;
+  margin-right: 10px;
+  background-color:dimgray;
+  font-weight: bold;
+  border-radius: 5px;
 }
