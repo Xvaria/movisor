@@ -58,7 +58,7 @@ ul {
   justify-content: center;
 }
 
-.App ul li{
+ul li{
   display: flex;
   flex-direction: column;
   justify-content: center;

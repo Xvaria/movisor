@@ -3,13 +3,12 @@ import Popup from './components/popup';
 import './App.css';
 
 function App() {
-  const [page, setPage] = useState(1);
-  const [count, setCount] = useState(0);
+  const [page, setPage] = useState({pag: 1, count: 0});
   const [movie, setMovie] = useState('Batman');
   const [btnpop, setBtnpop] = useState({value: false, title: '', count: 0});
   const [todos, setTodos] = useState();
   const fetchApi = async () => {
-    const response = await fetch(`http://www.omdbapi.com/?apikey=71241934&s=${movie}&page=${page}&type=movie`);
+    const response = await fetch(`http://www.omdbapi.com/?apikey=71241934&s=${movie}&page=${page.pag}&type=movie`);
     console.log(response.statusText);
     const responseJSON = await response.json();
     setTodos(responseJSON);
@@ -17,11 +16,11 @@ function App() {
 
   useEffect(() => {
     fetchApi()
-  }, [page]);
+  }, [page.pag]);
 
   useEffect(() => {
     fetchApi()
-  }, [count]);
+  }, [page.count]);
 
   return (
     <div className="App">
@@ -31,7 +30,7 @@ function App() {
           <label>
             <input type="text" placeholder="Write title or word" onChange={e => setMovie(e.target.value)}/>
           </label>
-          <a onClick={() => setCount(count + 1)}>Search</a>
+          <a onClick={() => setPage({pag: 1, count: page.count + 1})}>Search</a>
         </div>
       </div>
       <ul>
@@ -51,8 +50,8 @@ function App() {
       <Popup trigger={btnpop.value} setTrigger={setBtnpop} value={btnpop.title} count={btnpop.count}>
       </Popup>
       <div className="btn-pages">
-        <button onClick={page > 1 ? () => setPage(page - 1) : () => setPage(1)}>Prev</button>
-        <button onClick={() => setPage(page + 1)}>Next</button>
+        <button onClick={page.pag > 1 ? () => setPage({pag: page.pag - 1}) : () => setPage({pag: 1})}>Prev</button>
+        <button onClick={() => setPage({pag: page.pag + 1})}>Next</button>
       </div>
     </div>
   );
